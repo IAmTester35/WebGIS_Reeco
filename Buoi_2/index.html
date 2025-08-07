@@ -42,7 +42,7 @@
                 <div class="tab-buttons" id="tab-buttons">
                     <button class="tab-button active">Trang chu</button>
                     <button class="tab-button">Tim Kiem</button>
-                    <button class="tab-button">Thong ke</button>
+                    <button class="tab-button">Chon ban do</button>
                     <button class="tab-button">Admin</button>
                 </div>
                 <div class="tab-content" id="tab-content">
@@ -76,15 +76,11 @@
             </div>
 
             <main class="col-9 p-0">
-                <div id="map"></div>
+                <div id="map" class="container-fluid"></div>
             </main>
         </div>
     </div>
-
-    <script>
-        var mymap = L.map('map').setView([14.18, 108.84], 5);
-        L.tileLayer('https://cartodb-basemaps-b.global.ssl.fastly.net/rastertiles/voyager_labels_under/{z}/{x}/{y}.png').addTo(mymap);
-    </script>
+    <script src="map.js"></script>
     <script src="script.js"></script>
 </body>
 
