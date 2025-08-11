@@ -1,14 +1,7 @@
-// Tạo một đối tượng chứa các tilemap khác nhau
 var baseLayers = {
-    "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }),
-    "CartoDB Positron": L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-    }),
-    "Darkmap": L.tileLayer('https://cartodb-basemaps-b.global.ssl.fastly.net/spotify_dark/{z}/{x}/{y}{r}.png', {
-        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    })
+    "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
+    "CartoDB Positron": L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'),
+    "Darkmap": L.tileLayer('https://cartodb-basemaps-b.global.ssl.fastly.net/spotify_dark/{z}/{x}/{y}{r}.png')
 };
 
 var mymap = L.map('map').setView([14.18, 108.84], 5);
@@ -21,3 +14,11 @@ L.control.scale({
     position: 'bottomleft',
     maxWidth: 150
 }).addTo(mymap);
+
+var miniMapLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    minZoom: 0,
+    maxZoom: 13
+});
+
+
+var miniMap = new L.Control.MiniMap(miniMapLayer).addTo(mymap);
