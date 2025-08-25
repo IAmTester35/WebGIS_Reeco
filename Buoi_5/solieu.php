@@ -45,7 +45,7 @@
 
         if ($data) {
             echo "<table class='table table-bordered table-striped'>";
-            echo "<thead class='table-dark'><tr><th>ID</th><th>Diện tích</th><th>Huyện</th></tr></thead>";
+            echo "<thead class='table-dark'><tr><th>ID</th><th>Diện tích</th><th>Huyện</th><th>Hành động</th></tr></thead>";
             echo "<tbody>";
 
             foreach ($data as $row) {
@@ -53,6 +53,15 @@
                 echo "<td>" . htmlspecialchars($row['id']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['dientich']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['huyen']) . "</td>";
+                echo "<td>";
+                // Nút Sửa
+                echo "<a href='edit.php?id=" . urlencode($row['id']) . "' class='btn btn-warning btn-sm me-2'>Sửa</a>";
+                // Form Xóa
+                echo "<form action='delete.php' method='POST' class='d-inline' onsubmit='return confirm(\"Bạn có chắc chắn muốn xóa bản ghi này?\");'>";
+                echo "<input type='hidden' name='id' value='" . htmlspecialchars($row['id']) . "'>";
+                echo "<button type='submit' class='btn btn-danger btn-sm'>Xóa</button>";
+                echo "</form>";
+                echo "</td>";
                 echo "</tr>";
             }
             echo "</tbody>";

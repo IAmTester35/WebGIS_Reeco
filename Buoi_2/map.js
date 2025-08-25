@@ -20,5 +20,33 @@ var miniMapLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/
     maxZoom: 13
 });
 
-
 var miniMap = new L.Control.MiniMap(miniMapLayer).addTo(mymap);
+
+
+var thuadat = L.tileLayer.betterWms("http://localhost:8080/geoserver/First_Workspace/wms", {
+    layers: 'First_Workspace:nha_q10',
+    format: 'image/png',
+    transparent: true,
+    tiled: true
+})
+
+thuadat.addTo(mymap);
+
+// Lấy tham chiếu đến checkbox
+var checkboxThuadat = document.getElementById('switchLayerThuadat');
+
+// Lắng nghe sự kiện "change" trên checkbox
+checkboxThuadat.addEventListener('change', function() {
+    if (this.checked) {
+        // Nếu checkbox được chọn (checked), thêm layer vào bản đồ
+        if (!mymap.hasLayer(thuadat)) {
+            mymap.addLayer(thuadat);
+        }
+    } else {
+        // Nếu checkbox không được chọn, xóa layer khỏi bản đồ
+        if (mymap.hasLayer(thuadat)) {
+            mymap.removeLayer(thuadat);
+        }
+    }
+});
+
